@@ -1,0 +1,23 @@
+<mat-card class="card">
+  <div class="card-image" [ngStyle]="{'background-image':'url('+espReport?.image+')'}" mat-card-lg-image></div>
+  <mat-card-content>
+    <div class="content">
+      <mat-icon>device_thermostat</mat-icon>
+      <h6>{{espReport?.temperature}} C</h6>
+    </div>
+    <div class="content">
+      <mat-icon>water_drop</mat-icon>
+      <h6>{{espReport?.humidity}} %</h6>
+    </div>
+    <div class="content">
+      <mat-icon>heat_pump</mat-icon>
+      <h6>{{espReport?.humidity}} C</h6>
+    </div>
+    @if (interactable) {
+      <mat-icon class="delete" (click)="delete()">delete</mat-icon>
+    }
+  </mat-card-content>
+  <mat-card-footer>
+    <div class="footer">{{getTime()}}</div>
+  </mat-card-footer>
+</mat-card>

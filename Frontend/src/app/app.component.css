@@ -1,0 +1,56 @@
+.app-page {
+  max-width: 500px;
+  height: 100vh;
+  background-color: white;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: 15px;
+  overflow-y: auto;
+}
+
+.nav-bar {
+  background-color: cornsilk;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #005CBB;
+}
+
+.title h1 {
+  margin-bottom: 10px;
+}
+
+.title mat-icon {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  color: #005CBB;
+  margin-top: 12px;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.active-link {
+  text-decoration: underline;
+}
+

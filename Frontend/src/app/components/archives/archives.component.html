@@ -1,0 +1,6 @@
+<div class="archives-page">
+  @for (report of espReports; track report.id)
+  {
+    <app-report-card [espReport]="report" [interactable]="true" (onDelete)="removeReport($event)"></app-report-card>
+  }
+</div>

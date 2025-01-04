@@ -1,0 +1,9 @@
+.archives-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vh;
+  padding-top: 3vh;
+  box-sizing: border-box;
+  background-color: aliceblue;
+}

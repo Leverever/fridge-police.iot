@@ -1,0 +1,17 @@
+<div class="app-page">
+  <div class="nav-bar">
+    <div class="title">
+      <mat-icon>
+        local_police
+      </mat-icon>
+      <h1>{{title.toUpperCase()}}</h1>
+    </div>
+    <div class="links">
+      <a mat-button routerLink="/hq" [routerLinkActive]="['active-link']">HQ</a>
+      <a mat-button routerLink="/archives" [routerLinkActive]="['active-link']">ARCHIVES</a>
+    </div>
+  </div>
+  <div class="routed-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

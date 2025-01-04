@@ -1,0 +1,48 @@
+.card-image {
+  height: 240px;
+  width: 340px;
+  background-position: center;
+  border-radius: 15px;
+}
+
+
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+mat-card {
+  width: fit-content;
+}
+
+mat-card-content {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  color: #005CBB;
+  gap: 20px;
+  font-size: 25px;
+}
+
+.footer {
+  width: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  opacity: 0.6;
+}
+
+.delete {
+  color: red;
+}
+
+.delete:hover {
+  cursor: pointer;
+}

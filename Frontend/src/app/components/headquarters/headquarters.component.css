@@ -1,0 +1,45 @@
+.hq-page {
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.pic-settings {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 20px;
+  box-sizing: border-box;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  overflow-y: hidden;
+}
+
+form {
+  background-color: aliceblue;
+  border-radius: 15px;
+  padding: 2vh;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  height: 84vh;
+}
+
+.dual-controls {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.picture-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 35px;
+}
+
+.report-card {
+  width: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+}
