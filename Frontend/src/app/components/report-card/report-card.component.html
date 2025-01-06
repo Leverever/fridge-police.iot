@@ -3,7 +3,7 @@
   <mat-card-content>
     <div class="content">
       <mat-icon>device_thermostat</mat-icon>
-      <h6>{{espReport?.temperature}} C</h6>
+      <h6>{{espReport?.temperature}} °C</h6>
     </div>
     <div class="content">
       <mat-icon>water_drop</mat-icon>
@@ -11,7 +11,7 @@
     </div>
     <div class="content">
       <mat-icon>heat_pump</mat-icon>
-      <h6>{{espReport?.humidity}} C</h6>
+      <h6>{{espReport?.heatIndex}} °C</h6>
     </div>
     @if (interactable) {
       <mat-icon class="delete" (click)="delete()">delete</mat-icon>

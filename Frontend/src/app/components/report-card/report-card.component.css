@@ -1,6 +1,10 @@
 .card-image {
+  /*
   height: 240px;
   width: 340px;
+   */
+  height: 340px;
+  width: 100%;
   background-position: center;
   border-radius: 15px;
 }

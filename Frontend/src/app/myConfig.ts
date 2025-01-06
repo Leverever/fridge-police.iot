@@ -1,3 +1,3 @@
 export class MyConfig {
-  static readonly apiAddress: string = 'http://iotserver.808music.com';
+  static readonly apiAddress: string = 'https://iotserver.808music.com';
 }

@@ -2,23 +2,43 @@
   <form [formGroup]="form">
     <mat-tab-group>
       <mat-tab label="Picture">
-        <div class="picture-page">
+        <ng-template matTabContent>
+          <div class="picture-page">
         <div class="pic-settings">
           <mat-slide-toggle [labelPosition]="'before'" formControlName="withFlash">Use flash</mat-slide-toggle>
           <mat-slide-toggle [labelPosition]="'before'" formControlName="autoUpdate">Auto refresh</mat-slide-toggle>
           <div class="dual-controls">
-            <button mat-button (click)="SetData(false)">Save settings</button>
-            <button mat-flat-button (click)="SetData()">Take picture</button>
+            <button mat-button (click)="SavePictureSettings()">Save settings</button>
+            <button mat-flat-button (click)="takePicture()">Take picture</button>
           </div>
         </div>
         <div class="report-card">
           <app-report-card [espReport]="espReports[0]"></app-report-card>
         </div>
-        </div>
+          </div>
+        </ng-template>
       </mat-tab>
-      <mat-tab label="Temperature">
+      <mat-tab label="Vitals">
+        <ng-template matTabContent class="vitals-page">
+          <div class="vitals-settings">
+            <mat-slide-toggle [labelPosition]="'before'" formControlName="requireTemperature">Receive Vitals Info</mat-slide-toggle>
+            <mat-form-field>
+              <label>Maximum allowed temperature °C</label>
+              <input type="number" min="0" matInput name="max-temp" formControlName="maxTemperature">
+              <mat-icon matIconPrefix>device_thermostat</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <label>Time allowed above the max temperature</label>
+              <input type="number" min="5" matInput name="max-temp" formControlName="maxTimeInCritical">
+              <mat-icon matIconPrefix>timer</mat-icon>
+            </mat-form-field>
+            <button mat-flat-button (click)="saveSensorSettings()">Save settings</button>
+          </div>
+          <div class="sensor-charts">
+            <app-sensor-report-charts></app-sensor-report-charts>
+          </div>
+        </ng-template>
       </mat-tab>
     </mat-tab-group>
   </form>
-  <canvas id="temp-chart"></canvas>
 </div>

@@ -1,0 +1,28 @@
+.charts {
+  display: flex;
+  flex-direction: column;
+  gap: 7vh;
+}
+
+.charts > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2{
+  margin: 0;
+}
+
+.readings {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

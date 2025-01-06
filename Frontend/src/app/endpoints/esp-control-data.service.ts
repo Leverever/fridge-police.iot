@@ -12,6 +12,8 @@ export interface EspControl {
   requireTemperature: boolean;
   timeInCritical: number;
   maxTimeInCritical: number;
+  maxTemperature: number;
+  inCritical: boolean;
 }
 
 @Injectable({

@@ -7,9 +7,11 @@
         public bool WithFlash { get; set; }
         public bool AiSummary { get; set; }
         public bool AutoUpdate { get; set; }
-        public bool RequireTemperature { get; set; }
+        public bool RequireTemperature { get; set; } = true;
         public int TimeInCritical { get; set; }
-        public int MaxTimeInCritical { get; set; }
+        public int MaxTimeInCritical { get; set; } = 20;
+        public int MaxTemperature { get; set; } = 50;
+        public bool InCritical { get; set; } = false;
 
 
         public void CopyPropsFromObj(EspControl obj)

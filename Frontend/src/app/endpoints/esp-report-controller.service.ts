@@ -9,6 +9,7 @@ export interface EspReport {
   lastUpdate: string;
   temperature: number;
   humidity: number;
+  heatIndex: number;
   image: string;
 }
 

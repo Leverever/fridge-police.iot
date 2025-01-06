@@ -1,7 +1,9 @@
-﻿using IOT.Models;
+﻿using IOT.Hubs;
+using IOT.Models;
 using IOT.Models.DTOs;
 using IOT.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using RS1_2024_25.API.Services.Interfaces;
 using System.Text;
@@ -11,7 +13,7 @@ namespace IOT.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class EspReportController(ApplicationDbContext db, EspControl ec, 
-        IMyFileHandler fh, IConfiguration cfg) : Controller
+        IMyFileHandler fh, IConfiguration cfg, IHubContext<ReportHub> hub) : Controller
     {
         [Route("InsertReportEndpoint")]
         [HttpPost]
@@ -43,29 +45,14 @@ namespace IOT.Controllers
             espReport.LastUpdate = DateTime.Now;
             espReport.Temperature = request.Temperature;
             espReport.Humidity = request.Humidity;
+            espReport.HeatIndex = request.HeatIndex;
             espReport.Image = fileName;
 
             await db.SaveChangesAsync(cancellationToken);
 
-            return Ok();
-        }
-
-        [Route("InsertTemperatureReportEndpoint")]
-        [HttpPost]
-        public async Task<IActionResult> InsertTemperatureReportEndpoint([FromBody] SensorReportRequest request, CancellationToken cancellationToken = default)
-        {
-            SensorReport sr = new SensorReport
-            {
-                Temperature = request.Temperature,
-                Humidity = request.Humidity,
-                HeatIndex = request.HeatIndex,
-                RecordedAt = DateTime.Now,
-            };
-            db.SensorReports.Add(sr);
-            await db.SaveChangesAsync(cancellationToken);
-
             //SEND TO USER
-
+            await hub.Clients.All.SendAsync("receivedReport", espReport);
+            await hub.Clients.All.SendAsync("receivedControlData", ec);
 
             return Ok();
         }

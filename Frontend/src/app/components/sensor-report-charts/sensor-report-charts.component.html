@@ -1,0 +1,22 @@
+<div class="charts">
+  <div class="latest">
+    <h2>Latest</h2>
+    <div class="readings">
+      <div class="content">
+        <mat-icon>device_thermostat</mat-icon>
+        <h3>{{sensorReports[0].temperature}} °C</h3>
+      </div>
+      <div class="content">
+        <mat-icon>water_drop</mat-icon>
+        <h3>{{sensorReports[0].humidity}} %</h3>
+      </div>
+      <div class="content">
+        <mat-icon>heat_pump</mat-icon>
+        <h3>{{sensorReports[0].heatIndex.toFixed(2)}} °C</h3>
+      </div>
+    </div>
+  </div>
+  <app-chart [chartTitle]="'Temperature readings in °C'" [dataset]="getTempData()" [labels]="getLabels()"></app-chart>
+  <app-chart [chartTitle]="'Humidity readings in %'" [dataset]="getHumidityData()" [labels]="getLabels()"></app-chart>
+  <app-chart [chartTitle]="'Heat Index readings in °C'" [dataset]="getHeatIndexData()" [labels]="getLabels()"></app-chart>
+</div>

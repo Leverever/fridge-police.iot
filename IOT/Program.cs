@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using RS1_2024_25.API.Services.Interfaces;
 using RS1_2024_25.API.Services;
+using IOT.Hubs;
 
 namespace IOT
 {
@@ -22,6 +23,7 @@ namespace IOT
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddSignalR();
 
             //Custom services
             builder.Services.AddTransient<IMyFileHandler, FileHandler>();
@@ -54,6 +56,8 @@ namespace IOT
             });
 
             app.MapControllers();
+
+            app.MapHub<ReportHub>("/reportHub");
 
             app.Run();
         }

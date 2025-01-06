@@ -37,7 +37,7 @@ namespace RS1_2024_25.API.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            timer = new Timer(Process, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+            timer = new Timer(Process, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
             return Task.CompletedTask;
         }
 
@@ -46,7 +46,9 @@ namespace RS1_2024_25.API.Services
             Array tasks = Enum.GetValues(typeof(ScheduledTaskTypes));
             using (var client = new HttpClient())
             {
-                for (int i = 0; i < schedules.Count; i++)
+                await client.GetAsync("http://localhost:5197/api/Esp/CheckTemp");
+
+                /*for (int i = 0; i < schedules.Count; i++)
                 {
                     if (nextRuns[i] < DateTime.Now)
                     {
@@ -87,6 +89,7 @@ namespace RS1_2024_25.API.Services
                         Console.WriteLine((ScheduledTaskTypes)tasks.GetValue(i)! + " task at: " + nextRuns[i].ToLongDateString() + nextRuns[i].ToLongTimeString());
                     }
                 }
+                */
             }
         }
 

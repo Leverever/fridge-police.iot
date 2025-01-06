@@ -49,7 +49,7 @@ namespace RS1_2024_25.API.Services
 
             DateTime date = DateTime.Now;
 
-            string fileName = Path.GetRandomFileName()+ extension;
+            string fileName = Path.GetRandomFileName() + extension;
             if (file.Length > maxFileSizeInBytes && maxFileSizeInBytes > 0 || file.Length <= 0)
             {
                 return string.Empty;
