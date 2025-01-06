@@ -4,6 +4,7 @@ import {EspControlDataService} from '../../endpoints/esp-control-data.service';
 import {ReportCardComponent} from '../report-card/report-card.component';
 import {ReportService} from '../../services/report.service';
 import {MyConfig} from '../../myConfig';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-archives',
@@ -38,7 +39,8 @@ export class ArchivesComponent implements OnInit {
   }
 
   constructor(private espReportService: EspReportControllerService,
-              private reportService : ReportService,) {
+              private reportService : ReportService,
+              private snackBar : MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -50,6 +52,7 @@ export class ArchivesComponent implements OnInit {
   }
 
   removeReport(report: EspReport) {
+    this.snackBar.open("Report removed successfully.","Ok", {duration: 2000});
     this.espReports = this.espReports.filter(esp => esp.id !== report.id);
   }
 }

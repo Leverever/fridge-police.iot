@@ -35,6 +35,12 @@ camera_config_t config;
 #define DHT_TYPE DHT11
 DHT dht(DHT_PIN,DHT_TYPE);
 
+//Buzzer pin
+#define BUZZER_PIN 13
+
+const int dhtInterval = 10000;
+unsigned long previousMillis = 0;
+
 //WiFi credentials
 const char* ssid = "FRITZ!Box 7490";
 const char* password = "honolulu1";
@@ -144,6 +150,7 @@ String getControlData() {
 }
 
 void sendSensorData(bool requireTemperature, float t, float h, float heatIndex);
+void handleBuzzer(bool inCritical, int timeInCritical, int maxTimeInCritical);
 
 void setup() {
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
@@ -152,11 +159,12 @@ void setup() {
   setupWiFi();
   setupCamera();
   dht.begin();
-
+  //buzzerSetup()
+  pinMode(BUZZER_PIN, OUTPUT);
 }
 
 void loop() {
-  delay(10000);
+  delay(1000);
 
   float h = dht.readHumidity();
   float t = dht.readTemperature();
@@ -183,11 +191,16 @@ void loop() {
   deserializeJson(doc, controlData);
   bool requirePicture = doc["requirePicture"];
   int criticalTime = doc["timeInCritical"];
+  int inCritical = doc["inCritical"];
+  int maxTimeInCritical = doc["maxTimeInCritical"];
   bool requireTemperature = doc["requireTemperature"];
   WiFiClient client;
 
   //Send sensor data
   sendSensorData(requireTemperature, t, h, heatIndex);
+
+  //HandleBuzzer
+  handleBuzzer(inCritical, criticalTime, maxTimeInCritical);
 
   //Send picture and sensor data
   if(requirePicture)
@@ -327,8 +340,10 @@ void loop() {
 }
 
 void sendSensorData(bool requireTemperature, float t, float h, float heatIndex) {
-  if(requireTemperature)
+  unsigned long currentMillis = millis();
+  if(requireTemperature && currentMillis - previousMillis >= dhtInterval)
   {
+    previousMillis = currentMillis;
     HTTPClient http;
     WiFiClient client;
     JsonDocument body;
@@ -348,5 +363,18 @@ void sendSensorData(bool requireTemperature, float t, float h, float heatIndex) 
     Serial.println(response);
 
     http.end();
+  }
+}
+
+void handleBuzzer(bool inCritical, int timeInCritical, int maxTimeInCritical) {
+  if(inCritical && (timeInCritical > maxTimeInCritical))
+  {
+    digitalWrite(BUZZER_PIN, HIGH);
+    Serial.println("buzzzzzzz");
+  }
+  else
+  {
+    digitalWrite(BUZZER_PIN, LOW);
+    Serial.println("noooooooo");
   }
 }
